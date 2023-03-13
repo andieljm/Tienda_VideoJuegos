@@ -1,0 +1,49 @@
+﻿body {
+    font-family: "Nunito", sans-serif;
+}
+
+.nav_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #007FA3;
+    height: 85px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.nav_principal {
+    display: flex;
+    align-items: center;
+}
+
+.nav_principal a {
+    text-decoration: none;
+    color: white;
+    margin: 13px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.nav_principal a:hover{
+    background-color: whitesmoke;
+    color: black;
+    text-decoration: none;
+}
+
+.nav_login {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.nav_login a {
+    text-decoration: none;
+    color: white;
+    margin: 15px;
+    font-size: 15px;
+}
+
+
