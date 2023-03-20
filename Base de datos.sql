@@ -108,6 +108,15 @@ FOREIGN KEY (ID_PERIFERICO) REFERENCES PERIFERICO(ID_PERIFERICO)on delete cascad
 
 ---fin de creacion de base de datos con la creacion del registro del visual 
 
+-- inicio de los inserts
+
+insert into MARCA(ID_MARCA, nombre_marca)
+VALUES (1, 'Sony'),
+(2, 'Microsoft'),
+(3, 'Nintendo');
+
+-- fin de los inserts
+
 -- inicio para base de datos con registro de usuario desde 0
 
 CREATE TABLE ROL(
