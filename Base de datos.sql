@@ -68,6 +68,7 @@ ID_METODO INT NOT NULL,
 nombre_metodo VARCHAR(30) NOT NULL,
 PRIMARY KEY (ID_METODO))
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CREATE TABLE CARRRITO(
 ID_CARRITO INT NOT NULL,
 cantidad INT NOT NULL,
@@ -105,6 +106,8 @@ FOREIGN KEY (ID_FACTURA) REFERENCES FACTURA(ID_FACTURA)on delete cascade,
 FOREIGN KEY (ID_CONSOLA) REFERENCES CONSOLA(ID_CONSOLA)on delete cascade,
 FOREIGN KEY (ID_VIDEOJUEGO) REFERENCES VIDEOJUEGO(ID_VIDEOJUEGO)on delete cascade,
 FOREIGN KEY (ID_PERIFERICO) REFERENCES PERIFERICO(ID_PERIFERICO)on delete cascade);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ---fin de creacion de base de datos con la creacion del registro del visual 
 
