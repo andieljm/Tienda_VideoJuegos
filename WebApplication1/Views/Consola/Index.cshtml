@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplication1.Models.CONSOLA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+<h2>Consolas</h2>
+
+<p>
+    @Html.ActionLink("Agregar Consola", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_consola)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cant_disp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_consola)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cant_disp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_CONSOLA }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_CONSOLA }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_CONSOLA })
+        </td>
+    </tr>
+}
+
+</table>

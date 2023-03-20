@@ -115,6 +115,11 @@ VALUES (1, 'Sony'),
 (2, 'Microsoft'),
 (3, 'Nintendo');
 
+--Inserts Consola:
+insert into CONSOLA(ID_CONSOLA, nombre_consola, cant_disp, precio, ID_MARCA)
+VALUES (1, 'PlayStation 1 Slim', 2, 55000, 1),
+(2, 'PlayStation 2', 6, 60000, 1);
+
 -- fin de los inserts
 
 -- inicio para base de datos con registro de usuario desde 0
