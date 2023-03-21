@@ -67,3 +67,11 @@
     width: 1200px;
     margin: auto;
 }
+#carouselExampleControls {
+    margin-top: 80px; /* Change this value to match the height of your navbar */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
