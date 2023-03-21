@@ -173,7 +173,7 @@
     <Compile Include="Clases\Marca.cs" />
     <Compile Include="Clases\Periferico.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ConsolaController.cs" />
+    <Compile Include="Controllers\CONSOLAsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
@@ -318,6 +318,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Shared\_PaginaDiseno.cshtml" />
+<<<<<<< Updated upstream
     <Content Include="Views\Consola\Index.cshtml" />
     <Content Include="Views\Perifericoss\Index.cshtml" />
     <Content Include="Views\Perifericoss\Create.cshtml" />
@@ -326,6 +327,13 @@
     <Content Include="Views\PERIFERICOes\Details.cshtml" />
     <Content Include="Views\PERIFERICOes\Edit.cshtml" />
     <Content Include="Views\PERIFERICOes\Index.cshtml" />
+=======
+    <Content Include="Views\CONSOLAs\Create.cshtml" />
+    <Content Include="Views\CONSOLAs\Delete.cshtml" />
+    <Content Include="Views\CONSOLAs\Details.cshtml" />
+    <Content Include="Views\CONSOLAs\Edit.cshtml" />
+    <Content Include="Views\CONSOLAs\Index.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

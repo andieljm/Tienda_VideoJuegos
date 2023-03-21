@@ -27,7 +27,7 @@
                     @Html.ActionLink("Videojuegos", "About", "Home")
                 </a>
                 <a>
-                    @Html.ActionLink("Consolas", "Contact", "Home")
+                    @Html.ActionLink("Consolas", "Index", "CONSOLAs")
                 </a>
                 <a>
                     @Html.ActionLink("Perifericos", "View", "Home")
@@ -37,7 +37,7 @@
                 </a>
                 <a>
                     @Html.ActionLink("Carrito", "View", "Home")
-                </a>  
+                </a>
             </ul>
             <div class="nav_login">
                 <a>
@@ -45,6 +45,7 @@
                 </a>
             </div>
         </div>
+        <br><br><br>
     </header>
 
     <div class="container body-content">
@@ -54,7 +55,7 @@
             <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
         </footer>
     </div>
-
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
