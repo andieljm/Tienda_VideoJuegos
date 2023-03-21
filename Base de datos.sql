@@ -2,13 +2,7 @@ create database TiendaVG;
 
 use TiendaVG;
 
----- antes de crear todas las tablas
-delete from AspNetUsers;
-----
----antes de correr las lineas de abajo eliminar manual mente la llave primaria que se encuentra en la carpeta key
-alter table AspNetUsers drop column id;
-ALTER TABLE AspNetUsers ADD consulta INT IDENTITY(1,1);
----
+
 
 --creacion de base de datos con el registro de perfiles generada de el framework
 --Video consolas
