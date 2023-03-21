@@ -19,7 +19,7 @@
     <header>
         <div class="nav_bg">
             <ul class="nav_principal">
-                <img src="~/img/Logo.png" alt="Bootstrap" width="90" height="30">
+                <img src="~/img/Logo.png" alt="Bootstrap" width="170" height="80">
                 <a>
                     @Html.ActionLink("Inicio", "Index", "Home")
                 </a>
@@ -52,8 +52,11 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            </div>
         </footer>
+
     </div>
 
 
