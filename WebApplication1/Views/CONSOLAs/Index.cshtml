@@ -21,7 +21,9 @@
         <th>
             @Html.DisplayNameFor(model => model.precio)
         </th>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.MARCA.nombre_marca)
+        </th>
         <th></th>
     </tr>
 
@@ -36,11 +38,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.precio)
         </td>
-        
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_CONSOLA }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_CONSOLA }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_CONSOLA })
+            @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_CONSOLA }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_CONSOLA }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_CONSOLA })
         </td>
     </tr>
 }
