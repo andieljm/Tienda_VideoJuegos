@@ -8,45 +8,26 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Añadir nuevo", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre_periferico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cant_disp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MARCA.nombre_marca)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_periferico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cant_disp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_PERIFERICO }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_PERIFERICO }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_PERIFERICO })
-        </td>
-    </tr>
-}
 
-</table>
+    @foreach (var item in Model)
+    {
+        <div class="contedor_perifericos">
+            <div class="cartasGrid">
+                <div class="cartas">
+                    <img src="~/img/Logo.png" alt="...">
+                    <h3>Nombre Periferico: @Html.DisplayFor(modelItem => item.nombre_periferico)</h3>
+                    <p>Precio: @Html.DisplayFor(modelItem => item.precio)</p>
+                    <p>Cantidad disponible: @Html.DisplayFor(modelItem => item.cant_disp)</p>
+                    <h4>Marca: @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)</h4>
+                    <bottom type="bottom" class="btn btn-primary">@Html.ActionLink("Editar", "Edit", new { id = item.ID_PERIFERICO })</bottom>
+                    <bottom type="bottom" class="btn btn-primary"> @Html.ActionLink("Detalles", "Details", new { id = item.ID_PERIFERICO })</bottom>
+                    <bottom type="bottom" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PERIFERICO })</bottom>
+                </div>
+            </div>
+        </div>
+
+    }
+
