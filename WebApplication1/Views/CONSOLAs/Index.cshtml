@@ -10,43 +10,25 @@
 <p>
     @Html.ActionLink("Agregar Consola", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre_consola)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cant_disp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MARCA.nombre_marca)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_consola)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cant_disp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID_CONSOLA }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.ID_CONSOLA }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_CONSOLA })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
 
-</table>
+        <div class="contedor_perifericos">
+            <div class="cartasGrid">
+                <div class="cartas">
+                    <img src="~/img/Logo.png" alt="...">
+                    <h3>Nombre Consola: @Html.DisplayFor(modelItem => item.nombre_consola)</h3>
+                    <p>Precio: @Html.DisplayFor(modelItem => item.precio)</p>
+                    <p>Cantidad disponible: @Html.DisplayFor(modelItem => item.cant_disp)</p>
+                    <h4>Marca: @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)</h4>
+                    <br>
+                    <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.ID_CONSOLA })</button>
+                    <br>
+                    <button type="button" class="btn btn-info">@Html.ActionLink("Detalles", "Details", new { id = item.ID_CONSOLA })</button>
+                    <br>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_CONSOLA })</button>
+                </div>
+            </div>
+        </div>
+    }

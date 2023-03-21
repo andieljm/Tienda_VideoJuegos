@@ -172,11 +172,13 @@
     <Compile Include="Clases\Consola.cs" />
     <Compile Include="Clases\Marca.cs" />
     <Compile Include="Clases\Periferico.cs" />
+    <Compile Include="Clases\Videojuego.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CONSOLAsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
+    <Compile Include="Controllers\VIDEOJUEGOesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -330,6 +332,11 @@
     <Content Include="Views\CONSOLAs\Details.cshtml" />
     <Content Include="Views\CONSOLAs\Edit.cshtml" />
     <Content Include="Views\CONSOLAs\Index.cshtml" />
+    <Content Include="Views\VIDEOJUEGOes\Create.cshtml" />
+    <Content Include="Views\VIDEOJUEGOes\Delete.cshtml" />
+    <Content Include="Views\VIDEOJUEGOes\Details.cshtml" />
+    <Content Include="Views\VIDEOJUEGOes\Edit.cshtml" />
+    <Content Include="Views\VIDEOJUEGOes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

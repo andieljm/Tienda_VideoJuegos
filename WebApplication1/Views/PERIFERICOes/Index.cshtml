@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<WebApplication1.Models.PERIFERICO>
-
+<link rel="stylesheet" href="~/Content/Estilos.css" />
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Periféricos</h2>
 
 <p>
     @Html.ActionLink("Añadir nuevo", "Create")
@@ -22,9 +22,12 @@
                     <p>Precio: @Html.DisplayFor(modelItem => item.precio)</p>
                     <p>Cantidad disponible: @Html.DisplayFor(modelItem => item.cant_disp)</p>
                     <h4>Marca: @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)</h4>
-                    <bottom type="bottom" class="btn btn-primary">@Html.ActionLink("Editar", "Edit", new { id = item.ID_PERIFERICO })</bottom>
-                    <bottom type="bottom" class="btn btn-primary"> @Html.ActionLink("Detalles", "Details", new { id = item.ID_PERIFERICO })</bottom>
-                    <bottom type="bottom" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PERIFERICO })</bottom>
+                    <br>
+                    <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.ID_PERIFERICO })</button>
+                    <br>
+                    <button type="button" class="btn btn-info"> @Html.ActionLink("Detalles", "Details", new { id = item.ID_PERIFERICO })</button>
+                    <br>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PERIFERICO })</button>
                 </div>
             </div>
         </div>
