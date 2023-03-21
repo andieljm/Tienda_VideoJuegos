@@ -4,7 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ea6b605016064a48aaba24c5795a94a2" Name="Diagram1" />
+      <Diagram DiagramId="24889248cd58497c9bd30b73b88fc18e" Name="Diagram1">
+        <EntityTypeShape EntityType="TiendaVGModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.AspNetUsers" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.CITA_REPARACION" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.CONSOLA" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.DOMICILIO" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.MARCA" Width="1.5" PointX="7.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.METODO_PAGO" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.PERIFERICO" Width="1.5" PointX="10" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.TALLER" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVGModel.VIDEOJUEGO" Width="1.5" PointX="12.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="TiendaVGModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.FK__DOMICILIO__ID_US__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.FK__TALLER__ID_USUAR__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.FK__CITA_REPA__ID_RE__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.FK__CONSOLA__ID_MARC__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.FK__VIDEOJUEG__ID_CO__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.FK__PERIFERIC__ID_MA__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVGModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

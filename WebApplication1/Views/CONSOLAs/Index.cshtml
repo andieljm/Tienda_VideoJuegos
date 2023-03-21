@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebApplication1.Models.CONSOLA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+<h2>Consolas</h2>
+
+<p>
+    @Html.ActionLink("Agregar Consola", "Create")
+</p>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="contedor_perifericos">
+            <div class="cartasGrid">
+                <div class="cartas">
+                    <img src="~/img/Logo.png" alt="...">
+                    <h3>Nombre Consola: @Html.DisplayFor(modelItem => item.nombre_consola)</h3>
+                    <p>Precio: @Html.DisplayFor(modelItem => item.precio)</p>
+                    <p>Cantidad disponible: @Html.DisplayFor(modelItem => item.cant_disp)</p>
+                    <h4>Marca: @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)</h4>
+                    <br>
+                    <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.ID_CONSOLA })</button>
+                    <br>
+                    <button type="button" class="btn btn-info">@Html.ActionLink("Detalles", "Details", new { id = item.ID_CONSOLA })</button>
+                    <br>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_CONSOLA })</button>
+                </div>
+            </div>
+        </div>
+    }

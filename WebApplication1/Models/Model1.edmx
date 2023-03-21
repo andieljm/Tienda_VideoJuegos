@@ -4,20 +4,807 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TiendaVGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="TiendaVGModelStoreContainer" />
+      <Schema Namespace="TiendaVGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CITA_REPARACION">
+          <Key>
+            <PropertyRef Name="ID_CITA" />
+          </Key>
+          <Property Name="ID_CITA" Type="int" Nullable="false" />
+          <Property Name="nombre_empleado" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="fecha_asignada" Type="date" Nullable="false" />
+          <Property Name="ID_REPARACION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONSOLA">
+          <Key>
+            <PropertyRef Name="ID_CONSOLA" />
+          </Key>
+          <Property Name="ID_CONSOLA" Type="int" Nullable="false" />
+          <Property Name="nombre_consola" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cant_disp" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_MARCA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOMICILIO">
+          <Key>
+            <PropertyRef Name="ID_DOMICILIO" />
+          </Key>
+          <Property Name="ID_DOMICILIO" Type="int" Nullable="false" />
+          <Property Name="provincia" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ciudad" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="canton" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MARCA">
+          <Key>
+            <PropertyRef Name="ID_MARCA" />
+          </Key>
+          <Property Name="ID_MARCA" Type="int" Nullable="false" />
+          <Property Name="nombre_marca" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="METODO_PAGO">
+          <Key>
+            <PropertyRef Name="ID_METODO" />
+          </Key>
+          <Property Name="ID_METODO" Type="int" Nullable="false" />
+          <Property Name="nombre_metodo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERIFERICO">
+          <Key>
+            <PropertyRef Name="ID_PERIFERICO" />
+          </Key>
+          <Property Name="ID_PERIFERICO" Type="int" Nullable="false" />
+          <Property Name="nombre_periferico" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="cant_disp" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_MARCA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TALLER">
+          <Key>
+            <PropertyRef Name="ID_REPARACION" />
+          </Key>
+          <Property Name="ID_REPARACION" Type="int" Nullable="false" />
+          <Property Name="nombre_dispositivo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="fecha_ingreso" Type="date" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIDEOJUEGO">
+          <Key>
+            <PropertyRef Name="ID_VIDEOJUEGO" />
+          </Key>
+          <Property Name="ID_VIDEOJUEGO" Type="int" Nullable="false" />
+          <Property Name="nombre_videojuego" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="cant_disp" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_CONSOLA" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CITA_REPA__ID_RE__534D60F1">
+          <End Role="TALLER" Type="Self.TALLER" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CITA_REPARACION" Type="Self.CITA_REPARACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TALLER">
+              <PropertyRef Name="ID_REPARACION" />
+            </Principal>
+            <Dependent Role="CITA_REPARACION">
+              <PropertyRef Name="ID_REPARACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSOLA__ID_MARC__47DBAE45">
+          <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARCA">
+              <PropertyRef Name="ID_MARCA" />
+            </Principal>
+            <Dependent Role="CONSOLA">
+              <PropertyRef Name="ID_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DOMICILIO__ID_US__5629CD9C">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DOMICILIO" Type="Self.DOMICILIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DOMICILIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERIFERIC__ID_MA__4D94879B">
+          <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PERIFERICO" Type="Self.PERIFERICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARCA">
+              <PropertyRef Name="ID_MARCA" />
+            </Principal>
+            <Dependent Role="PERIFERICO">
+              <PropertyRef Name="ID_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TALLER__ID_USUAR__5070F446">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TALLER" Type="Self.TALLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TALLER">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIDEOJUEG__ID_CO__4AB81AF0">
+          <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VIDEOJUEGO" Type="Self.VIDEOJUEGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSOLA">
+              <PropertyRef Name="ID_CONSOLA" />
+            </Principal>
+            <Dependent Role="VIDEOJUEGO">
+              <PropertyRef Name="ID_CONSOLA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TiendaVGModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CITA_REPARACION" EntityType="Self.CITA_REPARACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONSOLA" EntityType="Self.CONSOLA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOMICILIO" EntityType="Self.DOMICILIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="METODO_PAGO" EntityType="Self.METODO_PAGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERIFERICO" EntityType="Self.PERIFERICO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TALLER" EntityType="Self.TALLER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIDEOJUEGO" EntityType="Self.VIDEOJUEGO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CITA_REPA__ID_RE__534D60F1" Association="Self.FK__CITA_REPA__ID_RE__534D60F1">
+            <End Role="TALLER" EntitySet="TALLER" />
+            <End Role="CITA_REPARACION" EntitySet="CITA_REPARACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSOLA__ID_MARC__47DBAE45" Association="Self.FK__CONSOLA__ID_MARC__47DBAE45">
+            <End Role="MARCA" EntitySet="MARCA" />
+            <End Role="CONSOLA" EntitySet="CONSOLA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DOMICILIO__ID_US__5629CD9C" Association="Self.FK__DOMICILIO__ID_US__5629CD9C">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="DOMICILIO" EntitySet="DOMICILIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERIFERIC__ID_MA__4D94879B" Association="Self.FK__PERIFERIC__ID_MA__4D94879B">
+            <End Role="MARCA" EntitySet="MARCA" />
+            <End Role="PERIFERICO" EntitySet="PERIFERICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TALLER__ID_USUAR__5070F446" Association="Self.FK__TALLER__ID_USUAR__5070F446">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TALLER" EntitySet="TALLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIDEOJUEG__ID_CO__4AB81AF0" Association="Self.FK__VIDEOJUEG__ID_CO__4AB81AF0">
+            <End Role="CONSOLA" EntitySet="CONSOLA" />
+            <End Role="VIDEOJUEGO" EntitySet="VIDEOJUEGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TiendaVGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="TiendaVGEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="DOMICILIO" Relationship="Self.FK__DOMICILIO__ID_US__5629CD9C" FromRole="AspNetUsers" ToRole="DOMICILIO" />
+          <NavigationProperty Name="TALLER" Relationship="Self.FK__TALLER__ID_USUAR__5070F446" FromRole="AspNetUsers" ToRole="TALLER" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="CITA_REPARACION">
+          <Key>
+            <PropertyRef Name="ID_CITA" />
+          </Key>
+          <Property Name="ID_CITA" Type="Int32" Nullable="false" />
+          <Property Name="nombre_empleado" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_asignada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_REPARACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TALLER" Relationship="Self.FK__CITA_REPA__ID_RE__534D60F1" FromRole="CITA_REPARACION" ToRole="TALLER" />
+        </EntityType>
+        <EntityType Name="CONSOLA">
+          <Key>
+            <PropertyRef Name="ID_CONSOLA" />
+          </Key>
+          <Property Name="ID_CONSOLA" Type="Int32" Nullable="false" />
+          <Property Name="nombre_consola" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cant_disp" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_MARCA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MARCA" Relationship="Self.FK__CONSOLA__ID_MARC__47DBAE45" FromRole="CONSOLA" ToRole="MARCA" />
+          <NavigationProperty Name="VIDEOJUEGO" Relationship="Self.FK__VIDEOJUEG__ID_CO__4AB81AF0" FromRole="CONSOLA" ToRole="VIDEOJUEGO" />
+        </EntityType>
+        <EntityType Name="DOMICILIO">
+          <Key>
+            <PropertyRef Name="ID_DOMICILIO" />
+          </Key>
+          <Property Name="ID_DOMICILIO" Type="Int32" Nullable="false" />
+          <Property Name="provincia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ciudad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="canton" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__DOMICILIO__ID_US__5629CD9C" FromRole="DOMICILIO" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="MARCA">
+          <Key>
+            <PropertyRef Name="ID_MARCA" />
+          </Key>
+          <Property Name="ID_MARCA" Type="Int32" Nullable="false" />
+          <Property Name="nombre_marca" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CONSOLA" Relationship="Self.FK__CONSOLA__ID_MARC__47DBAE45" FromRole="MARCA" ToRole="CONSOLA" />
+          <NavigationProperty Name="PERIFERICO" Relationship="Self.FK__PERIFERIC__ID_MA__4D94879B" FromRole="MARCA" ToRole="PERIFERICO" />
+        </EntityType>
+        <EntityType Name="METODO_PAGO">
+          <Key>
+            <PropertyRef Name="ID_METODO" />
+          </Key>
+          <Property Name="ID_METODO" Type="Int32" Nullable="false" />
+          <Property Name="nombre_metodo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERIFERICO">
+          <Key>
+            <PropertyRef Name="ID_PERIFERICO" />
+          </Key>
+          <Property Name="ID_PERIFERICO" Type="Int32" Nullable="false" />
+          <Property Name="nombre_periferico" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cant_disp" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_MARCA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MARCA" Relationship="Self.FK__PERIFERIC__ID_MA__4D94879B" FromRole="PERIFERICO" ToRole="MARCA" />
+        </EntityType>
+        <EntityType Name="TALLER">
+          <Key>
+            <PropertyRef Name="ID_REPARACION" />
+          </Key>
+          <Property Name="ID_REPARACION" Type="Int32" Nullable="false" />
+          <Property Name="nombre_dispositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="detalle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_USUARIO" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TALLER__ID_USUAR__5070F446" FromRole="TALLER" ToRole="AspNetUsers" />
+          <NavigationProperty Name="CITA_REPARACION" Relationship="Self.FK__CITA_REPA__ID_RE__534D60F1" FromRole="TALLER" ToRole="CITA_REPARACION" />
+        </EntityType>
+        <EntityType Name="VIDEOJUEGO">
+          <Key>
+            <PropertyRef Name="ID_VIDEOJUEGO" />
+          </Key>
+          <Property Name="ID_VIDEOJUEGO" Type="Int32" Nullable="false" />
+          <Property Name="nombre_videojuego" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cant_disp" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ID_CONSOLA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CONSOLA" Relationship="Self.FK__VIDEOJUEG__ID_CO__4AB81AF0" FromRole="VIDEOJUEGO" ToRole="CONSOLA" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DOMICILIO__ID_US__5629CD9C">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DOMICILIO" Type="Self.DOMICILIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DOMICILIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TALLER__ID_USUAR__5070F446">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TALLER" Type="Self.TALLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TALLER">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CITA_REPA__ID_RE__534D60F1">
+          <End Role="TALLER" Type="Self.TALLER" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CITA_REPARACION" Type="Self.CITA_REPARACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TALLER">
+              <PropertyRef Name="ID_REPARACION" />
+            </Principal>
+            <Dependent Role="CITA_REPARACION">
+              <PropertyRef Name="ID_REPARACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSOLA__ID_MARC__47DBAE45">
+          <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARCA">
+              <PropertyRef Name="ID_MARCA" />
+            </Principal>
+            <Dependent Role="CONSOLA">
+              <PropertyRef Name="ID_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIDEOJUEG__ID_CO__4AB81AF0">
+          <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VIDEOJUEGO" Type="Self.VIDEOJUEGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSOLA">
+              <PropertyRef Name="ID_CONSOLA" />
+            </Principal>
+            <Dependent Role="VIDEOJUEGO">
+              <PropertyRef Name="ID_CONSOLA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERIFERIC__ID_MA__4D94879B">
+          <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PERIFERICO" Type="Self.PERIFERICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARCA">
+              <PropertyRef Name="ID_MARCA" />
+            </Principal>
+            <Dependent Role="PERIFERICO">
+              <PropertyRef Name="ID_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TiendaVGEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="CITA_REPARACION" EntityType="Self.CITA_REPARACION" />
+          <EntitySet Name="CONSOLA" EntityType="Self.CONSOLA" />
+          <EntitySet Name="DOMICILIO" EntityType="Self.DOMICILIO" />
+          <EntitySet Name="MARCA" EntityType="Self.MARCA" />
+          <EntitySet Name="METODO_PAGO" EntityType="Self.METODO_PAGO" />
+          <EntitySet Name="PERIFERICO" EntityType="Self.PERIFERICO" />
+          <EntitySet Name="TALLER" EntityType="Self.TALLER" />
+          <EntitySet Name="VIDEOJUEGO" EntityType="Self.VIDEOJUEGO" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DOMICILIO__ID_US__5629CD9C" Association="Self.FK__DOMICILIO__ID_US__5629CD9C">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="DOMICILIO" EntitySet="DOMICILIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TALLER__ID_USUAR__5070F446" Association="Self.FK__TALLER__ID_USUAR__5070F446">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TALLER" EntitySet="TALLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CITA_REPA__ID_RE__534D60F1" Association="Self.FK__CITA_REPA__ID_RE__534D60F1">
+            <End Role="TALLER" EntitySet="TALLER" />
+            <End Role="CITA_REPARACION" EntitySet="CITA_REPARACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSOLA__ID_MARC__47DBAE45" Association="Self.FK__CONSOLA__ID_MARC__47DBAE45">
+            <End Role="MARCA" EntitySet="MARCA" />
+            <End Role="CONSOLA" EntitySet="CONSOLA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIDEOJUEG__ID_CO__4AB81AF0" Association="Self.FK__VIDEOJUEG__ID_CO__4AB81AF0">
+            <End Role="CONSOLA" EntitySet="CONSOLA" />
+            <End Role="VIDEOJUEGO" EntitySet="VIDEOJUEGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERIFERIC__ID_MA__4D94879B" Association="Self.FK__PERIFERIC__ID_MA__4D94879B">
+            <End Role="MARCA" EntitySet="MARCA" />
+            <End Role="PERIFERICO" EntitySet="PERIFERICO" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TiendaVGModelStoreContainer" CdmEntityContainer="TiendaVGEntities" />
+        <EntityContainerMapping StorageEntityContainer="TiendaVGModelStoreContainer" CdmEntityContainer="TiendaVGEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TiendaVGModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="TiendaVGModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="TiendaVGModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="TiendaVGModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TiendaVGModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CITA_REPARACION">
+            <EntityTypeMapping TypeName="TiendaVGModel.CITA_REPARACION">
+              <MappingFragment StoreEntitySet="CITA_REPARACION">
+                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+                <ScalarProperty Name="fecha_asignada" ColumnName="fecha_asignada" />
+                <ScalarProperty Name="ID_REPARACION" ColumnName="ID_REPARACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONSOLA">
+            <EntityTypeMapping TypeName="TiendaVGModel.CONSOLA">
+              <MappingFragment StoreEntitySet="CONSOLA">
+                <ScalarProperty Name="ID_CONSOLA" ColumnName="ID_CONSOLA" />
+                <ScalarProperty Name="nombre_consola" ColumnName="nombre_consola" />
+                <ScalarProperty Name="cant_disp" ColumnName="cant_disp" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="ID_MARCA" ColumnName="ID_MARCA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOMICILIO">
+            <EntityTypeMapping TypeName="TiendaVGModel.DOMICILIO">
+              <MappingFragment StoreEntitySet="DOMICILIO">
+                <ScalarProperty Name="ID_DOMICILIO" ColumnName="ID_DOMICILIO" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="canton" ColumnName="canton" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARCA">
+            <EntityTypeMapping TypeName="TiendaVGModel.MARCA">
+              <MappingFragment StoreEntitySet="MARCA">
+                <ScalarProperty Name="ID_MARCA" ColumnName="ID_MARCA" />
+                <ScalarProperty Name="nombre_marca" ColumnName="nombre_marca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="METODO_PAGO">
+            <EntityTypeMapping TypeName="TiendaVGModel.METODO_PAGO">
+              <MappingFragment StoreEntitySet="METODO_PAGO">
+                <ScalarProperty Name="ID_METODO" ColumnName="ID_METODO" />
+                <ScalarProperty Name="nombre_metodo" ColumnName="nombre_metodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERIFERICO">
+            <EntityTypeMapping TypeName="TiendaVGModel.PERIFERICO">
+              <MappingFragment StoreEntitySet="PERIFERICO">
+                <ScalarProperty Name="ID_PERIFERICO" ColumnName="ID_PERIFERICO" />
+                <ScalarProperty Name="nombre_periferico" ColumnName="nombre_periferico" />
+                <ScalarProperty Name="cant_disp" ColumnName="cant_disp" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="ID_MARCA" ColumnName="ID_MARCA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TALLER">
+            <EntityTypeMapping TypeName="TiendaVGModel.TALLER">
+              <MappingFragment StoreEntitySet="TALLER">
+                <ScalarProperty Name="ID_REPARACION" ColumnName="ID_REPARACION" />
+                <ScalarProperty Name="nombre_dispositivo" ColumnName="nombre_dispositivo" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIDEOJUEGO">
+            <EntityTypeMapping TypeName="TiendaVGModel.VIDEOJUEGO">
+              <MappingFragment StoreEntitySet="VIDEOJUEGO">
+                <ScalarProperty Name="ID_VIDEOJUEGO" ColumnName="ID_VIDEOJUEGO" />
+                <ScalarProperty Name="nombre_videojuego" ColumnName="nombre_videojuego" />
+                <ScalarProperty Name="cant_disp" ColumnName="cant_disp" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="ID_CONSOLA" ColumnName="ID_CONSOLA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TiendaVGModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

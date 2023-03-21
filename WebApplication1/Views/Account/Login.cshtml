@@ -1,4 +1,5 @@
-﻿@using WebApplication1.Models
+﻿
+@using WebApplication1.Models
 @model LoginViewModel
 @{
     ViewBag.Title = "Iniciar sesión";
@@ -11,7 +12,7 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Utilice una cuenta local para iniciar sesión.</h4>
+                <h4>Utilice una cuenta para iniciar sesión.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -41,19 +42,21 @@
                         <input type="submit" value="Iniciar sesión" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
+                <br> <br>
+                <button type="button" ; class="btn btn-light">
+
                     @Html.ActionLink("Registrarse como usuario nuevo", "Register")
-                </p>
+                </button>
                 @* Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
-                    <p>
-                        @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
-                    </p>*@
+            <p>
+                @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
+            </p>*@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
         <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            <img src="~/img/Login.jpg" width="300px" height="300px">
         </section>
     </div>
 </div>

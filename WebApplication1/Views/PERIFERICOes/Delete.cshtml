@@ -1,0 +1,57 @@
+﻿@model WebApplication1.Models.PERIFERICO
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+<h2>Eliminar un Periférico</h2>
+
+<h3>Seguro que quiere eliminar este Periférico?</h3>
+<div>
+    <h4>Eliminar este Periférico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_periferico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_periferico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cant_disp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cant_disp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MARCA.nombre_marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MARCA.nombre_marca)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a Periféricos", "Index")
+        </div>
+    }
+</div>

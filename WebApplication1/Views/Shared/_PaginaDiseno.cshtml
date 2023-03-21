@@ -18,41 +18,45 @@
 
     <header>
         <div class="nav_bg">
-            <ul class="nav_principal">
-                <img src="~/img/Logo.png" alt="Bootstrap" width="90" height="30">
+            <div class="nav_principal">
+                <img src="~/img/Logo.png" alt="Bootstrap" width="170" height="80">
                 <a>
                     @Html.ActionLink("Inicio", "Index", "Home")
                 </a>
                 <a>
-                    @Html.ActionLink("Videojuegos", "About", "Home")
+                    @Html.ActionLink("Videojuegos", "Index", "VIDEOJUEGOes")
                 </a>
                 <a>
-                    @Html.ActionLink("Consolas", "Contact", "Home")
+                    @Html.ActionLink("Consolas", "Index", "CONSOLAs")
                 </a>
                 <a>
-                    @Html.ActionLink("Perifericos", "View", "Home")
+                    @Html.ActionLink("Perifericos", "Index", "PERIFERICOes")
                 </a>
                 <a>
                     @Html.ActionLink("Taller", "View", "Home")
                 </a>
                 <a>
                     @Html.ActionLink("Carrito", "View", "Home")
-                </a>  
-            </ul>
+                </a>
+            </div>
             <div class="nav_login">
                 <a>
                     @Html.Partial("_LoginPartial")
                 </a>
             </div>
         </div>
+        <br><br>
     </header>
 
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year - VG VideoJuegos Store</p>
+            </div>
         </footer>
+
     </div>
 
 
