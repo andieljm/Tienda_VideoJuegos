@@ -170,10 +170,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Clases\Consola.cs" />
+    <Compile Include="Clases\Marca.cs" />
+    <Compile Include="Clases\Periferico.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConsolaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,6 +239,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Controllers\PERIFERICOesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -315,9 +319,19 @@
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Shared\_PaginaDiseno.cshtml" />
     <Content Include="Views\Consola\Index.cshtml" />
+    <Content Include="Views\Perifericoss\Index.cshtml" />
+    <Content Include="Views\Perifericoss\Create.cshtml" />
+    <Content Include="Views\PERIFERICOes\Create.cshtml" />
+    <Content Include="Views\PERIFERICOes\Delete.cshtml" />
+    <Content Include="Views\PERIFERICOes\Details.cshtml" />
+    <Content Include="Views\PERIFERICOes\Edit.cshtml" />
+    <Content Include="Views\PERIFERICOes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Marca\" />
+    <Folder Include="Views\Periferico\" />
+    <Folder Include="Views\Prueba\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
