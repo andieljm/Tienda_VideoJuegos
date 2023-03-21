@@ -16,7 +16,7 @@ namespace WebApplication1.Clases
             }
         }
 
-        public void Create(CONSOLA modelo)
+        public void Guardar(CONSOLA modelo)
         {
             using (TiendaVGEntities db = new TiendaVGEntities())
             {
@@ -25,7 +25,7 @@ namespace WebApplication1.Clases
             }
         }
 
-        public void Edit(CONSOLA modelo)
+        public void Modificar(CONSOLA modelo)
         {
             using (TiendaVGEntities db = new TiendaVGEntities())
             {
@@ -35,7 +35,7 @@ namespace WebApplication1.Clases
             }
         }
 
-        public void Delete(CONSOLA modelo)
+        public void Eliminar(CONSOLA modelo)
         {
             using (TiendaVGEntities db = new TiendaVGEntities())
             {
@@ -45,7 +45,7 @@ namespace WebApplication1.Clases
             }
         }
 
-        public CONSOLA Details(int id)
+        public CONSOLA Consultar(int id)
         {
             using (TiendaVGEntities db = new TiendaVGEntities())
             {

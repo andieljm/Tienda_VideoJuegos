@@ -36,7 +36,7 @@
 .nav_login {
     display: flex;
     align-content: center;
-    justify-content: flex-end;
+    justify-content: space-evenly;
 }
 
 .nav_login a {

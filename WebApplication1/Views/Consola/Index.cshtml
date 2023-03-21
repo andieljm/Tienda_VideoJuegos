@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Consolas</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar Consola", "Create")
 </p>
 <table class="table">
     <tr>
@@ -21,9 +21,7 @@
         <th>
             @Html.DisplayNameFor(model => model.precio)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MARCA.nombre_marca)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -38,9 +36,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.precio)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MARCA.nombre_marca)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID_CONSOLA }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID_CONSOLA }) |
