@@ -68,10 +68,32 @@
     margin: auto;
 }
 #carouselExampleControls {
-    margin-top: 80px; /* Change this value to match the height of your navbar */
+    margin-top: 80px; 
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 0;
+}
+
+.formulario {
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid var(--negro) 2px;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #007FA3;
+    text-align: center;
+}
+
+.form_campo {
+    margin-bottom: 50px;
+    font-size: 20px;
+    color: white;
+}
+
+.volver { 
+    font-size: 20px;
 }
