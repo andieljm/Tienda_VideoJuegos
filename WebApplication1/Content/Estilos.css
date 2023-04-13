@@ -94,6 +94,10 @@
     color: white;
 }
 
+.form_eliminar {
+    font-weight: lighter;
+}
+
 .volver { 
     font-size: 20px;
 }
