@@ -1,11 +1,12 @@
 ﻿@model WebApplication1.Models.CONSOLA
 
+@using WebApplication1.Helpers;
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
 }
 
-<h2 style="text-align:center">Agregar Consola</h2>
+@Html.secundarios("Agregar Consolas")
 <div>
     @Html.ActionLink("Volver", "Index")
 </div>

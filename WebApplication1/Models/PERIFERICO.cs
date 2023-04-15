@@ -6,11 +6,6 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace WebApplication1.Models
 {
@@ -19,33 +14,20 @@ namespace WebApplication1.Models
     
     public partial class PERIFERICO
     {
-        [Key]
-        [IDExiste]
-        [Display(Name = "ID Periferico")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PERIFERICO()
+        {
+            this.CARRRITO = new HashSet<CARRRITO>();
+        }
+    
         public int ID_PERIFERICO { get; set; }
-        [StringLength(60, ErrorMessage = "El nombre debe ser de 60 maximo.")]
         public string nombre_periferico { get; set; }
         public int cant_disp { get; set; }
-        [Range(1, 999999999, ErrorMessage = "El ID debe ser de 10 dígitos maximo.")]
         public decimal precio { get; set; }
         public int ID_MARCA { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CARRRITO> CARRRITO { get; set; }
         public virtual MARCA MARCA { get; set; }
-
-        public class IDExiste : ValidationAttribute
-        {
-            protected override ValidationResult IsValid(Object value, ValidationContext validationContext)
-            {
-                using (TiendaVGEntities db = new TiendaVGEntities())
-                {
-                    int id = (int)value;
-                    if (db.PERIFERICO.Where(x => x.ID_PERIFERICO == id).Count() > 0)
-                    {
-                        return new ValidationResult("El ID ya existe.");
-                    }
-                    return ValidationResult.Success;
-                }
-            }
-        }
     }
 }

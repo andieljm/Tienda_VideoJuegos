@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication1.Models.TALLER>
+
+<link rel="stylesheet" href="~/Content/Estilos.css" />
+@using WebApplication1.Helpers;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+@Html.Titulos("Taller")
+
+<p>
+    @Html.ActionLink("Crear reparacion", "Create")
+</p>
+
+<p>
+    @Html.ActionLink("Facturas", "", "controlador")
+</p>
+
+
+@foreach (var item in Model)
+{
+    <div class="contedor_perifericos">
+        <div class="cartasGrid">
+            <div class="cartas">
+                <img src="~/img/repara.jpg" width="400" height="300">
+                <h3>Nombre de dispositivo:@Html.DisplayFor(modelItem => item.nombre_dispositivo)</h3>
+                <p>Descripcion:@Html.DisplayFor(modelItem => item.detalle)</p>
+                <p>Fecha de ingreso:@Html.DisplayFor(modelItem => item.fecha_ingreso)</p>
+                <p>Telefono:@Html.DisplayFor(modelItem => item.telefono)</p>
+                <h4>Cliente:@Html.DisplayFor(modelItem => item.Nombre_cliente)</h4>
+                <br>
+                <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.ID_REPARACION })</button>
+                <br>
+                <button type="button" class="btn btn-info"> @Html.ActionLink("Detalles", "Details", new { id = item.ID_REPARACION })</button>
+                <br>
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_REPARACION })</button>
+                <br>
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Facturar", "", new { id = item.ID_REPARACION })</button>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,36 @@
+﻿@model WebApplication1.Models.MARCA
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+<h2 style="text-align:center">Eliminar Consola</h2>
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="formulario">
+        <h3 style="color:white">¿Está seguro que desea eliminar?</h3>
+        <br />
+        <br />
+        <div class="form_campo">
+            @Html.DisplayNameFor(model => model.nombre_marca)
+            <div class="form_eliminar">
+                @Html.DisplayFor(model => model.nombre_marca)
+            </div>
+        </div>
+
+        <div class="form_campo">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </div>
+
+    </div>
+}
+

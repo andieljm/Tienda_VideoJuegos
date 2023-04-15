@@ -1,0 +1,48 @@
+﻿@model WebApplication1.Models.MARCA
+
+@using WebApplication1.Helpers;
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+@Html.secundarios("Agregar Marca")
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="formulario">
+        <h4>MARCA</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form_campo">
+            @Html.LabelFor(model => model.ID_MARCA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            @Html.EditorFor(model => model.ID_MARCA, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ID_MARCA, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form_campo">
+            @Html.LabelFor(model => model.nombre_marca, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            @Html.EditorFor(model => model.nombre_marca, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nombre_marca, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Agregar" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

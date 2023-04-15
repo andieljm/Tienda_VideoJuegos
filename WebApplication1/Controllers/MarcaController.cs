@@ -5,14 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Clases;
+using WebApplication1.Filtros;
 
 namespace WebApplication1.Controllers
 {
+
     public class MarcaController : Controller
     {
         Marca instanciaMarca = new Marca();
         // GET: Marca
-
+        [VerificarRol]
         public ActionResult Index()
         {
             IEnumerable<MARCA> lst = instanciaMarca.Consultar();
@@ -27,7 +29,7 @@ namespace WebApplication1.Controllers
         public ActionResult Nuevo(MARCA modelo)
         {
             instanciaMarca.Guardar(modelo);
-            ViewBag.Mensaje = "El alumno se guardo correctamente.";
+           
             return View("Guardar", modelo);
         }
 
@@ -40,7 +42,7 @@ namespace WebApplication1.Controllers
         public ActionResult Cambiar(MARCA modelo)
         {
             instanciaMarca.Modificar(modelo);
-            ViewBag.Mensaje = "El alumno se modifico correctamente.";
+           
             return View("Modificar", modelo);
         }
 

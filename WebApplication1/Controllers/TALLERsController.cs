@@ -6,117 +6,114 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication1.Filtros;
 using WebApplication1.Models;
+using WebApplication1.Filtros;
 
 namespace WebApplication1.Controllers
 {
-    public class VIDEOJUEGOesController : Controller
+    public class TALLERsController : Controller
     {
         private TiendaVGEntities db = new TiendaVGEntities();
 
-        // GET: VIDEOJUEGOes
+        // GET: TALLERs
+        
         public ActionResult Index()
         {
-            var vIDEOJUEGO = db.VIDEOJUEGO.Include(v => v.CONSOLA);
-            return View(vIDEOJUEGO.ToList());
+         
+            return View(db.TALLER.ToList());
         }
 
-        // GET: VIDEOJUEGOes/Details/5
+        // GET: TALLERs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VIDEOJUEGO vIDEOJUEGO = db.VIDEOJUEGO.Find(id);
-            if (vIDEOJUEGO == null)
+            TALLER tALLER = db.TALLER.Find(id);
+            if (tALLER == null)
             {
                 return HttpNotFound();
             }
-            return View(vIDEOJUEGO);
+            return View(tALLER);
         }
         [VerificarRol]
-        // GET: VIDEOJUEGOes/Create
+        // GET: TALLERs/Create
         public ActionResult Create()
         {
-            ViewBag.ID_CONSOLA = new SelectList(db.CONSOLA, "ID_CONSOLA", "nombre_consola");
             return View();
         }
 
-        // POST: VIDEOJUEGOes/Create
+        // POST: TALLERs/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_VIDEOJUEGO,nombre_videojuego,cant_disp,precio,ID_CONSOLA")] VIDEOJUEGO vIDEOJUEGO)
+        public ActionResult Create([Bind(Include = "ID_REPARACION,nombre_dispositivo,detalle,fecha_ingreso,telefono,Nombre_cliente")] TALLER tALLER)
         {
             if (ModelState.IsValid)
             {
-                db.VIDEOJUEGO.Add(vIDEOJUEGO);
+                db.TALLER.Add(tALLER);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_CONSOLA = new SelectList(db.CONSOLA, "ID_CONSOLA", "nombre_consola", vIDEOJUEGO.ID_CONSOLA);
-            return View(vIDEOJUEGO);
+            return View(tALLER);
         }
         [VerificarRol]
-        // GET: VIDEOJUEGOes/Edit/5
+        // GET: TALLERs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VIDEOJUEGO vIDEOJUEGO = db.VIDEOJUEGO.Find(id);
-            if (vIDEOJUEGO == null)
+            TALLER tALLER = db.TALLER.Find(id);
+            if (tALLER == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_CONSOLA = new SelectList(db.CONSOLA, "ID_CONSOLA", "nombre_consola", vIDEOJUEGO.ID_CONSOLA);
-            return View(vIDEOJUEGO);
+            return View(tALLER);
         }
 
-        // POST: VIDEOJUEGOes/Edit/5
+        // POST: TALLERs/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_VIDEOJUEGO,nombre_videojuego,cant_disp,precio,ID_CONSOLA")] VIDEOJUEGO vIDEOJUEGO)
+        public ActionResult Edit([Bind(Include = "ID_REPARACION,nombre_dispositivo,detalle,fecha_ingreso,telefono,Nombre_cliente")] TALLER tALLER)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vIDEOJUEGO).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(tALLER).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_CONSOLA = new SelectList(db.CONSOLA, "ID_CONSOLA", "nombre_consola", vIDEOJUEGO.ID_CONSOLA);
-            return View(vIDEOJUEGO);
+            return View(tALLER);
         }
         [VerificarRol]
-        // GET: VIDEOJUEGOes/Delete/5
+        // GET: TALLERs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VIDEOJUEGO vIDEOJUEGO = db.VIDEOJUEGO.Find(id);
-            if (vIDEOJUEGO == null)
+            TALLER tALLER = db.TALLER.Find(id);
+            if (tALLER == null)
             {
                 return HttpNotFound();
             }
-            return View(vIDEOJUEGO);
+            return View(tALLER);
         }
 
-        // POST: VIDEOJUEGOes/Delete/5
+        // POST: TALLERs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            VIDEOJUEGO vIDEOJUEGO = db.VIDEOJUEGO.Find(id);
-            db.VIDEOJUEGO.Remove(vIDEOJUEGO);
+            TALLER tALLER = db.TALLER.Find(id);
+            db.TALLER.Remove(tALLER);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,80 @@
+﻿@model WebApplication1.Models.TALLER
+
+@using WebApplication1.Helpers;
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+@Html.secundarios("Agregar Reparacion")
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="formulario">
+        <h4>TALLER</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form_campo">
+            @Html.LabelFor(model => model.ID_REPARACION, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            @Html.EditorFor(model => model.ID_REPARACION, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ID_REPARACION, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form_campo">
+            @Html.LabelFor(model => model.nombre_dispositivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            @Html.EditorFor(model => model.nombre_dispositivo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nombre_dispositivo, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form_campo">
+            @Html.LabelFor(model => model.detalle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            @Html.EditorFor(model => model.detalle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.detalle, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form_campo">
+            @Html.LabelFor(model => model.fecha_ingreso, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            @Html.EditorFor(model => model.fecha_ingreso, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.fecha_ingreso, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form_campo">
+            @Html.LabelFor(model => model.telefono, htmlAttributes: new { @class = "control-label col-md-2"})
+            <br />
+            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form_campo">
+            @Html.LabelFor(model => model.Nombre_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            @Html.EditorFor(model => model.Nombre_cliente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre_cliente, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form_campo">
+            <input type="submit" value="Agregar" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

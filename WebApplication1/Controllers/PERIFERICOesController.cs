@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Filtros;
 using WebApplication1.Models;
 
 namespace WebApplication1.Views.Home
@@ -35,7 +36,7 @@ namespace WebApplication1.Views.Home
             }
             return View(pERIFERICO);
         }
-
+        [VerificarRol]
         // GET: PERIFERICOes/Create
         public ActionResult Create()
         {
@@ -60,7 +61,7 @@ namespace WebApplication1.Views.Home
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "nombre_marca", pERIFERICO.ID_MARCA);
             return View(pERIFERICO);
         }
-
+        [VerificarRol]
         // GET: PERIFERICOes/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,14 +87,14 @@ namespace WebApplication1.Views.Home
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pERIFERICO).State = EntityState.Modified;
+                db.Entry(pERIFERICO).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "nombre_marca", pERIFERICO.ID_MARCA);
             return View(pERIFERICO);
         }
-
+        [VerificarRol]
         // GET: PERIFERICOes/Delete/5
         public ActionResult Delete(int? id)
         {

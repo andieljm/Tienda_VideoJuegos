@@ -12,24 +12,17 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TALLER
+    public partial class FACTURA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TALLER()
+        public FACTURA()
         {
-            this.CITA_REPARACION = new HashSet<CITA_REPARACION>();
             this.DETALLE_FACTURA = new HashSet<DETALLE_FACTURA>();
         }
     
-        public int ID_REPARACION { get; set; }
-        public string nombre_dispositivo { get; set; }
-        public string detalle { get; set; }
-        public System.DateTime fecha_ingreso { get; set; }
-        public string telefono { get; set; }
-        public string Nombre_cliente { get; set; }
+        public int ID_FACTURA { get; set; }
+        public decimal total { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CITA_REPARACION> CITA_REPARACION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETALLE_FACTURA> DETALLE_FACTURA { get; set; }
     }

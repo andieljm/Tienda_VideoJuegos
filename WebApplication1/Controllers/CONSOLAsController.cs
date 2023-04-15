@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Filtros;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -15,6 +16,7 @@ namespace WebApplication1.Controllers
         private TiendaVGEntities db = new TiendaVGEntities();
 
         // GET: CONSOLAs
+        
         public ActionResult Index()
         {
             var cONSOLA = db.CONSOLA.Include(c => c.MARCA);
@@ -37,6 +39,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: CONSOLAs/Create
+        [VerificarRol]
         public ActionResult Create()
         {
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "nombre_marca");
@@ -60,7 +63,7 @@ namespace WebApplication1.Controllers
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "nombre_marca", cONSOLA.ID_MARCA);
             return View(cONSOLA);
         }
-
+        [VerificarRol]
         // GET: CONSOLAs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,14 +89,14 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cONSOLA).State = EntityState.Modified;
+                db.Entry(cONSOLA).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "nombre_marca", cONSOLA.ID_MARCA);
             return View(cONSOLA);
         }
-
+        [VerificarRol]
         // GET: CONSOLAs/Delete/5
         public ActionResult Delete(int? id)
         {

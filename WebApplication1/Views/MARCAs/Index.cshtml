@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.MARCA>
+
+@using WebApplication1.Helpers;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+@Html.Titulos("Marca")
+
+<p>
+    @Html.ActionLink("Agregar Marca", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="contedor_perifericos">
+        <div class="cartasGrid">
+            <div class="cartas">
+                <img src="~/img/marcas.jpg" width="500" height="300">
+                <h3>Nombre de Marca: @Html.DisplayFor(modelItem => item.nombre_marca)</h3>
+                <br>
+                <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.ID_MARCA })</button>
+                <br>
+                <button type="button" class="btn btn-info">@Html.ActionLink("Detalles", "Details", new { id = item.ID_MARCA })</button>
+                <br>
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_MARCA })</button>
+            </div>
+        </div>
+    </div>
+}
+

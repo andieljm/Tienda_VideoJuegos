@@ -17,6 +17,7 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CONSOLA()
         {
+            this.CARRRITO = new HashSet<CARRRITO>();
             this.VIDEOJUEGO = new HashSet<VIDEOJUEGO>();
         }
     
@@ -26,6 +27,8 @@ namespace WebApplication1.Models
         public decimal precio { get; set; }
         public int ID_MARCA { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CARRRITO> CARRRITO { get; set; }
         public virtual MARCA MARCA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VIDEOJUEGO> VIDEOJUEGO { get; set; }

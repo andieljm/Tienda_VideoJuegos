@@ -1,0 +1,66 @@
+﻿@model WebApplication1.Models.TALLER
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+<h2 style="text-align:center">Eliminar Reparacion</h2>
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+
+<h3>Are you sure you want to delete this?</h3>
+
+    <h4>TALLER</h4>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        <div class="formulario">
+            <h3 style="color:white">¿Está seguro que desea eliminar?</h3>
+            <br />
+            <br />
+            <div class="form_campo">
+                @Html.DisplayNameFor(model => model.nombre_dispositivo)
+                <div class="form_eliminar">
+                    @Html.DisplayFor(model => model.nombre_dispositivo)
+                </div>
+            </div>
+
+            <div class="form_campo">
+                @Html.DisplayNameFor(model => model.detalle)
+                <div class="form_eliminar">
+                    @Html.DisplayFor(model => model.detalle)
+                </div>
+            </div>
+
+            <div class="form_campo">
+                @Html.DisplayNameFor(model => model.fecha_ingreso)
+                <div class="form_eliminar">
+                    @Html.DisplayFor(model => model.fecha_ingreso)
+                </div>
+            </div>
+
+            <div class="form_campo">
+                @Html.DisplayNameFor(model => model.telefono)
+                <div class="form_eliminar">
+                    @Html.DisplayFor(model => model.telefono)
+                </div>
+            </div>
+
+            <div class="form_campo">
+                @Html.DisplayNameFor(model => model.Nombre_cliente)
+                <div class="form_eliminar">
+                    @Html.DisplayFor(model => model.telefono)
+                </div>
+            </div>
+
+            <div class="form_campo">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+            </div>
+
+        </div>
+    }

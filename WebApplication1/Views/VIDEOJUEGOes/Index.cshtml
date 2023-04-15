@@ -1,34 +1,35 @@
 ﻿@model IEnumerable<WebApplication1.Models.VIDEOJUEGO>
-
+<link rel="stylesheet" href="~/Content/Estilos.css" />
+@using WebApplication1.Helpers;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
 }
 
-<h2>Videojuegos</h2>
+@Html.Titulos("Video Juegos")
 
 <p>
     @Html.ActionLink("Añadir Videojuego", "Create")
 </p>
 
-    @foreach (var item in Model)
-    {
+@foreach (var item in Model)
+{
 
-        <div class="contedor_perifericos">
-            <div class="cartasGrid">
-                <div class="cartas">
-                    <img src="~/img/Logo.png" alt="...">
-                    <h3>Nombre Videojuego: @Html.DisplayFor(modelItem => item.nombre_videojuego)</h3>
-                    <p>Precio: @Html.DisplayFor(modelItem => item.precio)</p>
-                    <p>Cantidad disponible: @Html.DisplayFor(modelItem => item.cant_disp)</p>
-                    <h4>Consola: @Html.DisplayFor(modelItem => item.CONSOLA.nombre_consola)</h4>
-                    <br>
-                    <button type="button" class="btn btn-info">@Html.ActionLink("Edit", "Edit", new { id = item.ID_VIDEOJUEGO })</button>
-                    <br>
-                    <button type="button" class="btn btn-info"> @Html.ActionLink("Details", "Details", new { id = item.ID_VIDEOJUEGO })</button>
-                    <br>
-                    <button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.ID_VIDEOJUEGO })</button>
-                </div>
+    <div class="contedor_perifericos">
+        <div class="cartasGrid">
+            <div class="cartas">
+                <img src="~/img/juegos.jpg" width="400" height="300">
+                <h3>Nombre Videojuego: @Html.DisplayFor(modelItem => item.nombre_videojuego)</h3>
+                <p>Precio: @Html.DisplayFor(modelItem => item.precio)</p>
+                <p>Cantidad disponible: @Html.DisplayFor(modelItem => item.cant_disp)</p>
+                <h4>Consola: @Html.DisplayFor(modelItem => item.CONSOLA.nombre_consola)</h4>
+                <br>
+                <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.ID_VIDEOJUEGO })</button>
+                <br>
+                <button type="button" class="btn btn-info">@Html.ActionLink("Detalle", "Details", new { id = item.ID_VIDEOJUEGO })</button>
+                <br>
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_VIDEOJUEGO })</button>
             </div>
         </div>
-    }
+    </div>
+}

@@ -30,13 +30,18 @@ namespace WebApplication1.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<CARRRITO> CARRRITO { get; set; }
         public virtual DbSet<CITA_REPARACION> CITA_REPARACION { get; set; }
         public virtual DbSet<CONSOLA> CONSOLA { get; set; }
+        public virtual DbSet<DETALLE_FACTURA> DETALLE_FACTURA { get; set; }
         public virtual DbSet<DOMICILIO> DOMICILIO { get; set; }
+        public virtual DbSet<FACTURA> FACTURA { get; set; }
         public virtual DbSet<MARCA> MARCA { get; set; }
         public virtual DbSet<METODO_PAGO> METODO_PAGO { get; set; }
         public virtual DbSet<PERIFERICO> PERIFERICO { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TALLER> TALLER { get; set; }
         public virtual DbSet<VIDEOJUEGO> VIDEOJUEGO { get; set; }
+       
     }
 }

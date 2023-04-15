@@ -54,6 +54,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -178,10 +179,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
+    <Compile Include="Controllers\MARCAsController.cs" />
+    <Compile Include="Controllers\TALLERsController.cs" />
     <Compile Include="Controllers\VIDEOJUEGOesController.cs" />
+    <Compile Include="Filtros\VerificarRol.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Herlpes_T_principales.cs" />
+    <Compile Include="Helpers\H_T_secundarios.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -195,6 +201,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CARRRITO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CITA_REPARACION.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -204,7 +213,13 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DETALLE_FACTURA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DOMICILIO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FACTURA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -233,6 +248,9 @@
     <Compile Include="Models\PERIFERICO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TALLER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -256,7 +274,12 @@
     <Content Include="img\Carousel1.png" />
     <Content Include="img\Carousel2.png" />
     <Content Include="img\Carousel3.png" />
+    <Content Include="img\consolas.jpg" />
+    <Content Include="img\juegos.jpg" />
     <Content Include="img\Logo.png" />
+    <Content Include="img\marcas.jpg" />
+    <Content Include="img\pere.jpg" />
+    <Content Include="img\repara.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -338,6 +361,16 @@
     <Content Include="Views\VIDEOJUEGOes\Details.cshtml" />
     <Content Include="Views\VIDEOJUEGOes\Edit.cshtml" />
     <Content Include="Views\VIDEOJUEGOes\Index.cshtml" />
+    <Content Include="Views\TALLERs\Create.cshtml" />
+    <Content Include="Views\TALLERs\Delete.cshtml" />
+    <Content Include="Views\TALLERs\Details.cshtml" />
+    <Content Include="Views\TALLERs\Edit.cshtml" />
+    <Content Include="Views\TALLERs\Index.cshtml" />
+    <Content Include="Views\MARCAs\Create.cshtml" />
+    <Content Include="Views\MARCAs\Delete.cshtml" />
+    <Content Include="Views\MARCAs\Details.cshtml" />
+    <Content Include="Views\MARCAs\Edit.cshtml" />
+    <Content Include="Views\MARCAs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
