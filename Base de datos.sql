@@ -2,10 +2,6 @@ create database TiendaVG;
 
 use TiendaVG;
 
-
-
---creacion de base de datos con el registro de perfiles generada de el framework
---Video consolas
 CREATE TABLE MARCA(
 ID_MARCA INT NOT NULL,
 nombre_marca VARCHAR(30) NOT NULL,
@@ -43,17 +39,12 @@ PRIMARY KEY (ID_PERIFERICO),
 FOREIGN KEY(ID_MARCA) REFERENCES MARCA(ID_MARCA)on delete cascade)
 
 
-
 CREATE TABLE TALLER( 
 ID_REPARACION INT NOT NULL,
 nombre_dispositivo VARCHAR(60) NOT NULL,
 detalle VARCHAR(300) NOT NULL,
 fecha_ingreso DATE NOT NULL,
 PRIMARY KEY (ID_REPARACION));
-
--- para modificar la tabla sin carrito
-alter table taller drop constraint FK__TALLER__ID_USUAR__151B244E; 
-alter table taller drop column ID_USUARIO;
 alter table taller add Nombre_cliente varchar(60);
 alter table taller add telefono varchar(10);
 
