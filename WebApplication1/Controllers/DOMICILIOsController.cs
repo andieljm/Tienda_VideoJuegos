@@ -7,119 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
-using WebApplication1.Filtros;
 
 namespace WebApplication1.Controllers
 {
-    public class TALLERsController : Controller
+    public class DOMICILIOsController : Controller
     {
         private TiendaVGEntities db = new TiendaVGEntities();
 
-        // GET: TALLERs
-        
+        // GET: DOMICILIOs
         public ActionResult Index()
         {
-         
-            return View(db.TALLER.ToList());
+            var dOMICILIO = db.DOMICILIO.Include(d => d.AspNetUsers);
+            return View(dOMICILIO.ToList());
         }
 
-        public ActionResult Factura()
-        {
-
-            return View(db.TALLER.ToList());
-        }
-
-        // GET: TALLERs/Details/5
+        // GET: DOMICILIOs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TALLER tALLER = db.TALLER.Find(id);
-            if (tALLER == null)
+            DOMICILIO dOMICILIO = db.DOMICILIO.Find(id);
+            if (dOMICILIO == null)
             {
                 return HttpNotFound();
             }
-            return View(tALLER);
+            return View(dOMICILIO);
         }
-        [VerificarRol]
-        // GET: TALLERs/Create
+
+        // GET: DOMICILIOs/Create
         public ActionResult Create()
         {
+            ViewBag.ID_USUARIO = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
-        // POST: TALLERs/Create
+        // POST: DOMICILIOs/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_REPARACION,nombre_dispositivo,detalle,fecha_ingreso,telefono,Nombre_cliente")] TALLER tALLER)
+        public ActionResult Create([Bind(Include = "ID_DOMICILIO,provincia,ciudad,canton,direccion,ID_USUARIO")] DOMICILIO dOMICILIO)
         {
             if (ModelState.IsValid)
             {
-                db.TALLER.Add(tALLER);
+                db.DOMICILIO.Add(dOMICILIO);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tALLER);
+            ViewBag.ID_USUARIO = new SelectList(db.AspNetUsers, "Id", "Email", dOMICILIO.ID_USUARIO);
+            return View(dOMICILIO);
         }
-        [VerificarRol]
-        // GET: TALLERs/Edit/5
+
+        // GET: DOMICILIOs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TALLER tALLER = db.TALLER.Find(id);
-            if (tALLER == null)
+            DOMICILIO dOMICILIO = db.DOMICILIO.Find(id);
+            if (dOMICILIO == null)
             {
                 return HttpNotFound();
             }
-            return View(tALLER);
+            ViewBag.ID_USUARIO = new SelectList(db.AspNetUsers, "Id", "Email", dOMICILIO.ID_USUARIO);
+            return View(dOMICILIO);
         }
 
-        // POST: TALLERs/Edit/5
+        // POST: DOMICILIOs/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_REPARACION,nombre_dispositivo,detalle,fecha_ingreso,telefono,Nombre_cliente")] TALLER tALLER)
+        public ActionResult Edit([Bind(Include = "ID_DOMICILIO,provincia,ciudad,canton,direccion,ID_USUARIO")] DOMICILIO dOMICILIO)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tALLER).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(dOMICILIO).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tALLER);
+            ViewBag.ID_USUARIO = new SelectList(db.AspNetUsers, "Id", "Email", dOMICILIO.ID_USUARIO);
+            return View(dOMICILIO);
         }
-        [VerificarRol]
-        // GET: TALLERs/Delete/5
+
+        // GET: DOMICILIOs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TALLER tALLER = db.TALLER.Find(id);
-            if (tALLER == null)
+            DOMICILIO dOMICILIO = db.DOMICILIO.Find(id);
+            if (dOMICILIO == null)
             {
                 return HttpNotFound();
             }
-            return View(tALLER);
+            return View(dOMICILIO);
         }
 
-        // POST: TALLERs/Delete/5
+        // POST: DOMICILIOs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TALLER tALLER = db.TALLER.Find(id);
-            db.TALLER.Remove(tALLER);
+            DOMICILIO dOMICILIO = db.DOMICILIO.Find(id);
+            db.DOMICILIO.Remove(dOMICILIO);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

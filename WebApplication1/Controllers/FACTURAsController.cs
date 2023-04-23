@@ -7,121 +7,112 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
-using WebApplication1.Filtros;
 
 namespace WebApplication1.Controllers
 {
-    public class TALLERsController : Controller
+    public class FACTURAsController : Controller
     {
         private TiendaVGEntities db = new TiendaVGEntities();
 
-        // GET: TALLERs
-        
-        public ActionResult Index()
+        // GET: FACTURAs
+        public ActionResult Facturas()
         {
-         
-            return View(db.TALLER.ToList());
+            return View(db.FACTURA.ToList());
         }
 
-        public ActionResult Factura()
-        {
-
-            return View(db.TALLER.ToList());
-        }
-
-        // GET: TALLERs/Details/5
+        // GET: FACTURAs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TALLER tALLER = db.TALLER.Find(id);
-            if (tALLER == null)
+            FACTURA fACTURA = db.FACTURA.Find(id);
+            if (fACTURA == null)
             {
                 return HttpNotFound();
             }
-            return View(tALLER);
+            return View(fACTURA);
         }
-        [VerificarRol]
-        // GET: TALLERs/Create
+
+        // GET: FACTURAs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TALLERs/Create
+        // POST: FACTURAs/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_REPARACION,nombre_dispositivo,detalle,fecha_ingreso,telefono,Nombre_cliente")] TALLER tALLER)
+        public ActionResult Create([Bind(Include = "ID_FACTURA,nombre_dispositivo,detalle,fecha_ingreso,NOMBRE_CLIENTE,TELEFONO")] FACTURA fACTURA)
         {
             if (ModelState.IsValid)
             {
-                db.TALLER.Add(tALLER);
+                db.FACTURA.Add(fACTURA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tALLER);
+            return View(fACTURA);
         }
-        [VerificarRol]
-        // GET: TALLERs/Edit/5
-        public ActionResult Edit(int? id)
+
+        // GET: FACTURAs/Edit/5
+        public ActionResult Editar(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TALLER tALLER = db.TALLER.Find(id);
-            if (tALLER == null)
+            FACTURA fACTURA = db.FACTURA.Find(id);
+            if (fACTURA == null)
             {
                 return HttpNotFound();
             }
-            return View(tALLER);
+            return View(fACTURA);
         }
 
-        // POST: TALLERs/Edit/5
+        // POST: FACTURAs/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_REPARACION,nombre_dispositivo,detalle,fecha_ingreso,telefono,Nombre_cliente")] TALLER tALLER)
+        public ActionResult Editar([Bind(Include = "ID_FACTURA,nombre_dispositivo,detalle,fecha_ingreso,NOMBRE_CLIENTE,TELEFONO")] FACTURA fACTURA)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tALLER).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(fACTURA).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tALLER);
+            return View(fACTURA);
         }
-        [VerificarRol]
-        // GET: TALLERs/Delete/5
-        public ActionResult Delete(int? id)
+
+        // GET: FACTURAs/Delete/5
+        public ActionResult Eliminar(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TALLER tALLER = db.TALLER.Find(id);
-            if (tALLER == null)
+            FACTURA fACTURA = db.FACTURA.Find(id);
+            if (fACTURA == null)
             {
                 return HttpNotFound();
             }
-            return View(tALLER);
+            return View(fACTURA);
         }
 
-        // POST: TALLERs/Delete/5
+        // POST: FACTURAs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TALLER tALLER = db.TALLER.Find(id);
-            db.TALLER.Remove(tALLER);
+            FACTURA fACTURA = db.FACTURA.Find(id);
+            db.FACTURA.Remove(fACTURA);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Facturas");
         }
 
         protected override void Dispose(bool disposing)

@@ -18,19 +18,16 @@ namespace WebApplication1.Models
         public TALLER()
         {
             this.CITA_REPARACION = new HashSet<CITA_REPARACION>();
-            this.DETALLE_FACTURA = new HashSet<DETALLE_FACTURA>();
         }
     
         public int ID_REPARACION { get; set; }
         public string nombre_dispositivo { get; set; }
         public string detalle { get; set; }
         public System.DateTime fecha_ingreso { get; set; }
-        public string telefono { get; set; }
         public string Nombre_cliente { get; set; }
+        public string telefono { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CITA_REPARACION> CITA_REPARACION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETALLE_FACTURA> DETALLE_FACTURA { get; set; }
     }
 }

@@ -1,0 +1,65 @@
+﻿@model WebApplication1.Models.FACTURA
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_PaginaDiseno.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro de eliminar esta factura?</h3>
+<div>
+    <h4>FACTURA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_dispositivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_dispositivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE_CLIENTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_CLIENTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TELEFONO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TELEFONO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a Facturas", "Facturas")
+        </div>
+    }
+</div>

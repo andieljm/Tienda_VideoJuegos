@@ -14,7 +14,7 @@
 </p>
 
 <p>
-    @Html.ActionLink("Facturas", "", "controlador")
+    @Html.ActionLink("Facturas", "Facturas", "FACTURAs")
 </p>
 
 
@@ -36,7 +36,7 @@
                 <br>
                 <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.ID_REPARACION })</button>
                 <br>
-                <button type="button" class="btn btn-danger">@Html.ActionLink("Facturar", "", new { id = item.ID_REPARACION })</button>
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Facturar", "Facturas", "FACTURAs")</button>
             </div>
         </div>
     </div>
