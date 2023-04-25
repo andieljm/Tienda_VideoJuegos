@@ -66,16 +66,16 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="CARRITO">
+        <EntityType Name="CARRRITO">
           <Key>
             <PropertyRef Name="ID_CARRITO" />
           </Key>
           <Property Name="ID_CARRITO" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="ID_MARCA" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ID_CONSOLA" Type="int" Nullable="false" />
+          <Property Name="ID_VIDEOJUEGO" Type="int" />
+          <Property Name="ID_PERIFERICO" Type="int" />
         </EntityType>
         <EntityType Name="CITA_REPARACION">
           <Key>
@@ -160,8 +160,8 @@
           <Property Name="nombre_dispositivo" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="detalle" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="fecha_ingreso" Type="date" Nullable="false" />
-          <Property Name="Nombre_cliente" Type="varchar" MaxLength="60" />
           <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="Nombre_cliente" Type="varchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="VIDEOJUEGO">
           <Key>
@@ -173,33 +173,55 @@
           <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ID_CONSOLA" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__CARRITO__ID_MARC__02FC7413">
-          <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+        <Association Name="FK__CARRRITO__ID_CON__2EDAF651">
+          <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="1" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MARCA">
-              <PropertyRef Name="ID_MARCA" />
+            <Principal Role="CONSOLA">
+              <PropertyRef Name="ID_CONSOLA" />
             </Principal>
-            <Dependent Role="CARRITO">
-              <PropertyRef Name="ID_MARCA" />
+            <Dependent Role="CARRRITO">
+              <PropertyRef Name="ID_CONSOLA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CARRITO__ID_USUA__03F0984C">
+        <Association Name="FK__CARRRITO__ID_PER__30C33EC3">
+          <End Role="PERIFERICO" Type="Self.PERIFERICO" Multiplicity="0..1" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERIFERICO">
+              <PropertyRef Name="ID_PERIFERICO" />
+            </Principal>
+            <Dependent Role="CARRRITO">
+              <PropertyRef Name="ID_PERIFERICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CARRRITO__ID_USU__2DE6D218">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CARRITO">
+            <Dependent Role="CARRRITO">
               <PropertyRef Name="ID_USUARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CITA_REPA__ID_RE__4B7734FF">
+        <Association Name="FK__CARRRITO__ID_VID__2FCF1A8A">
+          <End Role="VIDEOJUEGO" Type="Self.VIDEOJUEGO" Multiplicity="0..1" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIDEOJUEGO">
+              <PropertyRef Name="ID_VIDEOJUEGO" />
+            </Principal>
+            <Dependent Role="CARRRITO">
+              <PropertyRef Name="ID_VIDEOJUEGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CITA_REPA__ID_RE__17F790F9">
           <End Role="TALLER" Type="Self.TALLER" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -213,7 +235,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CONSOLA__ID_MARC__5AEE82B9">
+        <Association Name="FK__CONSOLA__ID_MARC__0C85DE4D">
           <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -227,7 +249,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DOMICILIO__ID_US__693CA210">
+        <Association Name="FK__DOMICILIO__ID_US__1AD3FDA4">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -241,7 +263,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PERIFERIC__ID_MA__60A75C0F">
+        <Association Name="FK__PERIFERIC__ID_MA__123EB7A3">
           <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -255,7 +277,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VIDEOJUEG__ID_CO__5DCAEF64">
+        <Association Name="FK__VIDEOJUEG__ID_CO__0F624AF8">
           <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -325,6 +347,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TiendaVGModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -332,7 +385,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CARRRITO" EntityType="Self.CARRRITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CITA_REPARACION" EntityType="Self.CITA_REPARACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONSOLA" EntityType="Self.CONSOLA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOMICILIO" EntityType="Self.DOMICILIO" Schema="dbo" store:Type="Tables" />
@@ -343,31 +396,39 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TALLER" EntityType="Self.TALLER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VIDEOJUEGO" EntityType="Self.VIDEOJUEGO" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CARRITO__ID_MARC__02FC7413" Association="Self.FK__CARRITO__ID_MARC__02FC7413">
-            <End Role="MARCA" EntitySet="MARCA" />
-            <End Role="CARRITO" EntitySet="CARRITO" />
+          <AssociationSet Name="FK__CARRRITO__ID_CON__2EDAF651" Association="Self.FK__CARRRITO__ID_CON__2EDAF651">
+            <End Role="CONSOLA" EntitySet="CONSOLA" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CARRITO__ID_USUA__03F0984C" Association="Self.FK__CARRITO__ID_USUA__03F0984C">
+          <AssociationSet Name="FK__CARRRITO__ID_PER__30C33EC3" Association="Self.FK__CARRRITO__ID_PER__30C33EC3">
+            <End Role="PERIFERICO" EntitySet="PERIFERICO" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CARRRITO__ID_USU__2DE6D218" Association="Self.FK__CARRRITO__ID_USU__2DE6D218">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="CARRITO" EntitySet="CARRITO" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CITA_REPA__ID_RE__4B7734FF" Association="Self.FK__CITA_REPA__ID_RE__4B7734FF">
+          <AssociationSet Name="FK__CARRRITO__ID_VID__2FCF1A8A" Association="Self.FK__CARRRITO__ID_VID__2FCF1A8A">
+            <End Role="VIDEOJUEGO" EntitySet="VIDEOJUEGO" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CITA_REPA__ID_RE__17F790F9" Association="Self.FK__CITA_REPA__ID_RE__17F790F9">
             <End Role="TALLER" EntitySet="TALLER" />
             <End Role="CITA_REPARACION" EntitySet="CITA_REPARACION" />
           </AssociationSet>
-          <AssociationSet Name="FK__CONSOLA__ID_MARC__5AEE82B9" Association="Self.FK__CONSOLA__ID_MARC__5AEE82B9">
+          <AssociationSet Name="FK__CONSOLA__ID_MARC__0C85DE4D" Association="Self.FK__CONSOLA__ID_MARC__0C85DE4D">
             <End Role="MARCA" EntitySet="MARCA" />
             <End Role="CONSOLA" EntitySet="CONSOLA" />
           </AssociationSet>
-          <AssociationSet Name="FK__DOMICILIO__ID_US__693CA210" Association="Self.FK__DOMICILIO__ID_US__693CA210">
+          <AssociationSet Name="FK__DOMICILIO__ID_US__1AD3FDA4" Association="Self.FK__DOMICILIO__ID_US__1AD3FDA4">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="DOMICILIO" EntitySet="DOMICILIO" />
           </AssociationSet>
-          <AssociationSet Name="FK__PERIFERIC__ID_MA__60A75C0F" Association="Self.FK__PERIFERIC__ID_MA__60A75C0F">
+          <AssociationSet Name="FK__PERIFERIC__ID_MA__123EB7A3" Association="Self.FK__PERIFERIC__ID_MA__123EB7A3">
             <End Role="MARCA" EntitySet="MARCA" />
             <End Role="PERIFERICO" EntitySet="PERIFERICO" />
           </AssociationSet>
-          <AssociationSet Name="FK__VIDEOJUEG__ID_CO__5DCAEF64" Association="Self.FK__VIDEOJUEG__ID_CO__5DCAEF64">
+          <AssociationSet Name="FK__VIDEOJUEG__ID_CO__0F624AF8" Association="Self.FK__VIDEOJUEG__ID_CO__0F624AF8">
             <End Role="CONSOLA" EntitySet="CONSOLA" />
             <End Role="VIDEOJUEGO" EntitySet="VIDEOJUEGO" />
           </AssociationSet>
@@ -450,22 +511,24 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="CARRITO" Relationship="Self.FK__CARRITO__ID_USUA__03F0984C" FromRole="AspNetUsers" ToRole="CARRITO" />
-          <NavigationProperty Name="DOMICILIO" Relationship="Self.FK__DOMICILIO__ID_US__693CA210" FromRole="AspNetUsers" ToRole="DOMICILIO" />
+          <NavigationProperty Name="CARRRITO" Relationship="Self.FK__CARRRITO__ID_USU__2DE6D218" FromRole="AspNetUsers" ToRole="CARRRITO" />
+          <NavigationProperty Name="DOMICILIO" Relationship="Self.FK__DOMICILIO__ID_US__1AD3FDA4" FromRole="AspNetUsers" ToRole="DOMICILIO" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
-        <EntityType Name="CARRITO">
+        <EntityType Name="CARRRITO">
           <Key>
             <PropertyRef Name="ID_CARRITO" />
           </Key>
           <Property Name="ID_CARRITO" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ID_MARCA" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ID_USUARIO" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__CARRITO__ID_USUA__03F0984C" FromRole="CARRITO" ToRole="AspNetUsers" />
-          <NavigationProperty Name="MARCA" Relationship="Self.FK__CARRITO__ID_MARC__02FC7413" FromRole="CARRITO" ToRole="MARCA" />
+          <Property Name="ID_CONSOLA" Type="Int32" Nullable="false" />
+          <Property Name="ID_VIDEOJUEGO" Type="Int32" />
+          <Property Name="ID_PERIFERICO" Type="Int32" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__CARRRITO__ID_USU__2DE6D218" FromRole="CARRRITO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="CONSOLA" Relationship="Self.FK__CARRRITO__ID_CON__2EDAF651" FromRole="CARRRITO" ToRole="CONSOLA" />
+          <NavigationProperty Name="PERIFERICO" Relationship="Self.FK__CARRRITO__ID_PER__30C33EC3" FromRole="CARRRITO" ToRole="PERIFERICO" />
+          <NavigationProperty Name="VIDEOJUEGO" Relationship="Self.FK__CARRRITO__ID_VID__2FCF1A8A" FromRole="CARRRITO" ToRole="VIDEOJUEGO" />
         </EntityType>
         <EntityType Name="CITA_REPARACION">
           <Key>
@@ -475,7 +538,7 @@
           <Property Name="nombre_empleado" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha_asignada" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ID_REPARACION" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TALLER" Relationship="Self.FK__CITA_REPA__ID_RE__4B7734FF" FromRole="CITA_REPARACION" ToRole="TALLER" />
+          <NavigationProperty Name="TALLER" Relationship="Self.FK__CITA_REPA__ID_RE__17F790F9" FromRole="CITA_REPARACION" ToRole="TALLER" />
         </EntityType>
         <EntityType Name="CONSOLA">
           <Key>
@@ -486,8 +549,9 @@
           <Property Name="cant_disp" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ID_MARCA" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MARCA" Relationship="Self.FK__CONSOLA__ID_MARC__5AEE82B9" FromRole="CONSOLA" ToRole="MARCA" />
-          <NavigationProperty Name="VIDEOJUEGO" Relationship="Self.FK__VIDEOJUEG__ID_CO__5DCAEF64" FromRole="CONSOLA" ToRole="VIDEOJUEGO" />
+          <NavigationProperty Name="CARRRITO" Relationship="Self.FK__CARRRITO__ID_CON__2EDAF651" FromRole="CONSOLA" ToRole="CARRRITO" />
+          <NavigationProperty Name="MARCA" Relationship="Self.FK__CONSOLA__ID_MARC__0C85DE4D" FromRole="CONSOLA" ToRole="MARCA" />
+          <NavigationProperty Name="VIDEOJUEGO" Relationship="Self.FK__VIDEOJUEG__ID_CO__0F624AF8" FromRole="CONSOLA" ToRole="VIDEOJUEGO" />
         </EntityType>
         <EntityType Name="DOMICILIO">
           <Key>
@@ -499,7 +563,7 @@
           <Property Name="canton" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_USUARIO" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__DOMICILIO__ID_US__693CA210" FromRole="DOMICILIO" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__DOMICILIO__ID_US__1AD3FDA4" FromRole="DOMICILIO" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="FACTURA">
           <Key>
@@ -518,9 +582,8 @@
           </Key>
           <Property Name="ID_MARCA" Type="Int32" Nullable="false" />
           <Property Name="nombre_marca" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CARRITO" Relationship="Self.FK__CARRITO__ID_MARC__02FC7413" FromRole="MARCA" ToRole="CARRITO" />
-          <NavigationProperty Name="CONSOLA" Relationship="Self.FK__CONSOLA__ID_MARC__5AEE82B9" FromRole="MARCA" ToRole="CONSOLA" />
-          <NavigationProperty Name="PERIFERICO" Relationship="Self.FK__PERIFERIC__ID_MA__60A75C0F" FromRole="MARCA" ToRole="PERIFERICO" />
+          <NavigationProperty Name="CONSOLA" Relationship="Self.FK__CONSOLA__ID_MARC__0C85DE4D" FromRole="MARCA" ToRole="CONSOLA" />
+          <NavigationProperty Name="PERIFERICO" Relationship="Self.FK__PERIFERIC__ID_MA__123EB7A3" FromRole="MARCA" ToRole="PERIFERICO" />
         </EntityType>
         <EntityType Name="METODO_PAGO">
           <Key>
@@ -538,7 +601,8 @@
           <Property Name="cant_disp" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ID_MARCA" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MARCA" Relationship="Self.FK__PERIFERIC__ID_MA__60A75C0F" FromRole="PERIFERICO" ToRole="MARCA" />
+          <NavigationProperty Name="CARRRITO" Relationship="Self.FK__CARRRITO__ID_PER__30C33EC3" FromRole="PERIFERICO" ToRole="CARRRITO" />
+          <NavigationProperty Name="MARCA" Relationship="Self.FK__PERIFERIC__ID_MA__123EB7A3" FromRole="PERIFERICO" ToRole="MARCA" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -558,9 +622,9 @@
           <Property Name="nombre_dispositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="detalle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Nombre_cliente" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CITA_REPARACION" Relationship="Self.FK__CITA_REPA__ID_RE__4B7734FF" FromRole="TALLER" ToRole="CITA_REPARACION" />
+          <Property Name="Nombre_cliente" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CITA_REPARACION" Relationship="Self.FK__CITA_REPA__ID_RE__17F790F9" FromRole="TALLER" ToRole="CITA_REPARACION" />
         </EntityType>
         <EntityType Name="VIDEOJUEGO">
           <Key>
@@ -571,7 +635,8 @@
           <Property Name="cant_disp" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ID_CONSOLA" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CONSOLA" Relationship="Self.FK__VIDEOJUEG__ID_CO__5DCAEF64" FromRole="VIDEOJUEGO" ToRole="CONSOLA" />
+          <NavigationProperty Name="CARRRITO" Relationship="Self.FK__CARRRITO__ID_VID__2FCF1A8A" FromRole="VIDEOJUEGO" ToRole="CARRRITO" />
+          <NavigationProperty Name="CONSOLA" Relationship="Self.FK__VIDEOJUEG__ID_CO__0F624AF8" FromRole="VIDEOJUEGO" ToRole="CONSOLA" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -601,19 +666,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CARRITO__ID_USUA__03F0984C">
+        <Association Name="FK__CARRRITO__ID_USU__2DE6D218">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CARRITO">
+            <Dependent Role="CARRRITO">
               <PropertyRef Name="ID_USUARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DOMICILIO__ID_US__693CA210">
+        <Association Name="FK__DOMICILIO__ID_US__1AD3FDA4">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -627,21 +692,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CARRITO__ID_MARC__02FC7413">
-          <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+        <Association Name="FK__CARRRITO__ID_CON__2EDAF651">
+          <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="1" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MARCA">
-              <PropertyRef Name="ID_MARCA" />
+            <Principal Role="CONSOLA">
+              <PropertyRef Name="ID_CONSOLA" />
             </Principal>
-            <Dependent Role="CARRITO">
-              <PropertyRef Name="ID_MARCA" />
+            <Dependent Role="CARRRITO">
+              <PropertyRef Name="ID_CONSOLA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CITA_REPA__ID_RE__4B7734FF">
+        <Association Name="FK__CARRRITO__ID_PER__30C33EC3">
+          <End Role="PERIFERICO" Type="Self.PERIFERICO" Multiplicity="0..1" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERIFERICO">
+              <PropertyRef Name="ID_PERIFERICO" />
+            </Principal>
+            <Dependent Role="CARRRITO">
+              <PropertyRef Name="ID_PERIFERICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CARRRITO__ID_VID__2FCF1A8A">
+          <End Role="VIDEOJUEGO" Type="Self.VIDEOJUEGO" Multiplicity="0..1" />
+          <End Role="CARRRITO" Type="Self.CARRRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIDEOJUEGO">
+              <PropertyRef Name="ID_VIDEOJUEGO" />
+            </Principal>
+            <Dependent Role="CARRRITO">
+              <PropertyRef Name="ID_VIDEOJUEGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CITA_REPA__ID_RE__17F790F9">
           <End Role="TALLER" Type="Self.TALLER" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -655,7 +742,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CONSOLA__ID_MARC__5AEE82B9">
+        <Association Name="FK__CONSOLA__ID_MARC__0C85DE4D">
           <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -669,7 +756,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VIDEOJUEG__ID_CO__5DCAEF64">
+        <Association Name="FK__VIDEOJUEG__ID_CO__0F624AF8">
           <End Role="CONSOLA" Type="Self.CONSOLA" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -683,7 +770,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PERIFERIC__ID_MA__60A75C0F">
+        <Association Name="FK__PERIFERIC__ID_MA__123EB7A3">
           <End Role="MARCA" Type="Self.MARCA" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -707,7 +794,7 @@
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
-          <EntitySet Name="CARRITO" EntityType="Self.CARRITO" />
+          <EntitySet Name="CARRRITO" EntityType="Self.CARRRITO" />
           <EntitySet Name="CITA_REPARACION" EntityType="Self.CITA_REPARACION" />
           <EntitySet Name="CONSOLA" EntityType="Self.CONSOLA" />
           <EntitySet Name="DOMICILIO" EntityType="Self.DOMICILIO" />
@@ -726,31 +813,39 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__CARRITO__ID_USUA__03F0984C" Association="Self.FK__CARRITO__ID_USUA__03F0984C">
+          <AssociationSet Name="FK__CARRRITO__ID_USU__2DE6D218" Association="Self.FK__CARRRITO__ID_USU__2DE6D218">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="CARRITO" EntitySet="CARRITO" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
           </AssociationSet>
-          <AssociationSet Name="FK__DOMICILIO__ID_US__693CA210" Association="Self.FK__DOMICILIO__ID_US__693CA210">
+          <AssociationSet Name="FK__DOMICILIO__ID_US__1AD3FDA4" Association="Self.FK__DOMICILIO__ID_US__1AD3FDA4">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="DOMICILIO" EntitySet="DOMICILIO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CARRITO__ID_MARC__02FC7413" Association="Self.FK__CARRITO__ID_MARC__02FC7413">
-            <End Role="MARCA" EntitySet="MARCA" />
-            <End Role="CARRITO" EntitySet="CARRITO" />
+          <AssociationSet Name="FK__CARRRITO__ID_CON__2EDAF651" Association="Self.FK__CARRRITO__ID_CON__2EDAF651">
+            <End Role="CONSOLA" EntitySet="CONSOLA" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CITA_REPA__ID_RE__4B7734FF" Association="Self.FK__CITA_REPA__ID_RE__4B7734FF">
+          <AssociationSet Name="FK__CARRRITO__ID_PER__30C33EC3" Association="Self.FK__CARRRITO__ID_PER__30C33EC3">
+            <End Role="PERIFERICO" EntitySet="PERIFERICO" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CARRRITO__ID_VID__2FCF1A8A" Association="Self.FK__CARRRITO__ID_VID__2FCF1A8A">
+            <End Role="VIDEOJUEGO" EntitySet="VIDEOJUEGO" />
+            <End Role="CARRRITO" EntitySet="CARRRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CITA_REPA__ID_RE__17F790F9" Association="Self.FK__CITA_REPA__ID_RE__17F790F9">
             <End Role="TALLER" EntitySet="TALLER" />
             <End Role="CITA_REPARACION" EntitySet="CITA_REPARACION" />
           </AssociationSet>
-          <AssociationSet Name="FK__CONSOLA__ID_MARC__5AEE82B9" Association="Self.FK__CONSOLA__ID_MARC__5AEE82B9">
+          <AssociationSet Name="FK__CONSOLA__ID_MARC__0C85DE4D" Association="Self.FK__CONSOLA__ID_MARC__0C85DE4D">
             <End Role="MARCA" EntitySet="MARCA" />
             <End Role="CONSOLA" EntitySet="CONSOLA" />
           </AssociationSet>
-          <AssociationSet Name="FK__VIDEOJUEG__ID_CO__5DCAEF64" Association="Self.FK__VIDEOJUEG__ID_CO__5DCAEF64">
+          <AssociationSet Name="FK__VIDEOJUEG__ID_CO__0F624AF8" Association="Self.FK__VIDEOJUEG__ID_CO__0F624AF8">
             <End Role="CONSOLA" EntitySet="CONSOLA" />
             <End Role="VIDEOJUEGO" EntitySet="VIDEOJUEGO" />
           </AssociationSet>
-          <AssociationSet Name="FK__PERIFERIC__ID_MA__60A75C0F" Association="Self.FK__PERIFERIC__ID_MA__60A75C0F">
+          <AssociationSet Name="FK__PERIFERIC__ID_MA__123EB7A3" Association="Self.FK__PERIFERIC__ID_MA__123EB7A3">
             <End Role="MARCA" EntitySet="MARCA" />
             <End Role="PERIFERICO" EntitySet="PERIFERICO" />
           </AssociationSet>
@@ -758,7 +853,48 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TiendaVGModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TiendaVGModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -820,15 +956,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CARRITO">
-            <EntityTypeMapping TypeName="TiendaVGModel.CARRITO">
-              <MappingFragment StoreEntitySet="CARRITO">
+          <EntitySetMapping Name="CARRRITO">
+            <EntityTypeMapping TypeName="TiendaVGModel.CARRRITO">
+              <MappingFragment StoreEntitySet="CARRRITO">
                 <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID_MARCA" ColumnName="ID_MARCA" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_CONSOLA" ColumnName="ID_CONSOLA" />
+                <ScalarProperty Name="ID_VIDEOJUEGO" ColumnName="ID_VIDEOJUEGO" />
+                <ScalarProperty Name="ID_PERIFERICO" ColumnName="ID_PERIFERICO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -922,8 +1058,8 @@
                 <ScalarProperty Name="nombre_dispositivo" ColumnName="nombre_dispositivo" />
                 <ScalarProperty Name="detalle" ColumnName="detalle" />
                 <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
-                <ScalarProperty Name="Nombre_cliente" ColumnName="Nombre_cliente" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="Nombre_cliente" ColumnName="Nombre_cliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -946,6 +1082,30 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TiendaVGModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TiendaVGModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TiendaVGModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TiendaVGModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TiendaVGModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TiendaVGModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TiendaVGModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TiendaVGModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TiendaVGModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

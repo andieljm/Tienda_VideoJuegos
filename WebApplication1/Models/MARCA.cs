@@ -17,7 +17,6 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MARCA()
         {
-            this.CARRITO = new HashSet<CARRITO>();
             this.CONSOLA = new HashSet<CONSOLA>();
             this.PERIFERICO = new HashSet<PERIFERICO>();
         }
@@ -25,8 +24,6 @@ namespace WebApplication1.Models
         public int ID_MARCA { get; set; }
         public string nombre_marca { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CARRITO> CARRITO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONSOLA> CONSOLA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

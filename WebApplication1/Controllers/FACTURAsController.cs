@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Filtros;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -13,7 +14,7 @@ namespace WebApplication1.Controllers
     public class FACTURAsController : Controller
     {
         private TiendaVGEntities db = new TiendaVGEntities();
-
+        [VerificarRol]
         // GET: FACTURAs
         public ActionResult Facturas()
         {

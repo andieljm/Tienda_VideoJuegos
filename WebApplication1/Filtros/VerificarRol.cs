@@ -11,7 +11,7 @@ namespace WebApplication1.Filtros
 {
     public class VerificarRol : ActionFilterAttribute
     {
-        
+
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
@@ -25,13 +25,25 @@ namespace WebApplication1.Filtros
                 }
                 else
                 {
-                    controller.TempData["Error"] = "No eres administrador o no te has registrado";
-                    filterContext.Result = new RedirectToRouteResult(
-                    new System.Web.Routing.RouteValueDictionary {            
+                    if (usuarioActual.IsAuthenticated && !usuarioActual.Name.Equals("admin@gmail.com"))
+                    {
+                        controller.TempData["Error"] = "No eres administrador";
+                        filterContext.Result = new RedirectToRouteResult(
+                        new System.Web.Routing.RouteValueDictionary {
                     { "controller", "Home" },
                     { "action", "Index" }
-                        });
-                    
+                            });
+
+                    }
+                    else
+                    {
+                        controller.TempData["Error"] = "No eres administrador o no te has registrado";
+                        filterContext.Result = new RedirectToRouteResult(
+                        new System.Web.Routing.RouteValueDictionary {
+                    { "controller", "Home" },
+                    { "action", "Index" }
+                            });
+                    }
                 }
             }
         }

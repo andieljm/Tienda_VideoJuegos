@@ -5,23 +5,11 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="nav_principal">
-            <a>
-                @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </a>
-            <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-        </div>
-    }
-}
-else
-{
 <div class="nav_principal">
     <a>
-        @Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+        @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
     </a>
-    <a>
-        @Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-    </a>
+    <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
     @if (TempData["Error"] != null)
     {
         <div class="nav_principal">
@@ -32,5 +20,27 @@ else
             </div>
         </div>
     }
-</div>
+</div> 
+    }
+}
+else
+{
+    <div class="nav_principal">
+        <a>
+            @Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+        </a>
+        <a>
+            @Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </a>
+        @if (TempData["Error"] != null)
+        {
+            <div class="nav_principal">
+                <div class="col-md-offset-2 col-md-10">
+                    <font color="red">
+                        @TempData["Error"]
+                    </font>
+                </div>
+            </div>
+        }
+    </div>
 }

@@ -24,8 +24,8 @@ namespace WebApplication1.Models
         public string nombre_dispositivo { get; set; }
         public string detalle { get; set; }
         public System.DateTime fecha_ingreso { get; set; }
-        public string Nombre_cliente { get; set; }
         public string telefono { get; set; }
+        public string Nombre_cliente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CITA_REPARACION> CITA_REPARACION { get; set; }

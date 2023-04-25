@@ -12,16 +12,18 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CARRITO
+    public partial class CARRRITO
     {
         public int ID_CARRITO { get; set; }
-        public string Nombre { get; set; }
-        public int ID_MARCA { get; set; }
         public int cantidad { get; set; }
-        public decimal precio { get; set; }
         public string ID_USUARIO { get; set; }
+        public int ID_CONSOLA { get; set; }
+        public Nullable<int> ID_VIDEOJUEGO { get; set; }
+        public Nullable<int> ID_PERIFERICO { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual MARCA MARCA { get; set; }
+        public virtual CONSOLA CONSOLA { get; set; }
+        public virtual PERIFERICO PERIFERICO { get; set; }
+        public virtual VIDEOJUEGO VIDEOJUEGO { get; set; }
     }
 }
